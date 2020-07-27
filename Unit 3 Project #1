@@ -1,0 +1,103 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "name": "Untitled25.ipynb",
+      "provenance": [],
+      "authorship_tag": "ABX9TyPUd8wgX46exPVbgPcKvn1Q",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/keylanin13/Key/blob/master/Unit%203%20Project%20%231\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "hmvPFvXRqYNm",
+        "colab_type": "code",
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 104
+        },
+        "outputId": "e3dfeded-8415-4d48-ef99-3394d1e49d25"
+      },
+      "source": [
+        "import pandas as pd\n",
+        "import numpy as np\n",
+        "import seaborn as sns\n",
+        "%matplotlib inline\n",
+        "missing_values = ['na','s']\n",
+        "df = pd.read_csv('https://raw.githubusercontent.com/CunyLaguardiaDataAnalytics/datasets/master/2014-15_To_2016-17_School-_Level_NYC_Regents_Report_For_All_Variables.csv', na_values = missing_values)\n",
+        "df\n",
+        "\n",
+        "# School #P.S. 184m Shuang Wen filter \n",
+        "dfschoolshuang = df[(df['School DBN'] =='01M184')&(df['Regents Exam']=='Common Core Algebra')]\n",
+        "dfschoolshuang\n",
+        "dfschoolshuang=dfschoolshuang[['Year','Total Tested','Mean Score','Regents Exam']]\n",
+        "dfschoolshuang\n",
+        "\n",
+        "#Groupby for dfschoolshuang\n",
+        "#dfschoolshuang.groupby(['Year'])['Total Tested'].sum()\n",
+        "#dfschoolshuang.groupby(['Year'])['Total Tested'].describe()\n",
+        "dfschoolshuang.groupby(['Year'])['Mean Score'].median()\n",
+        "#dfschoolshuang.groupby(['Year'])['Mean Score'].mean()\n",
+        "\n",
+        "#Graphing Results for dfschoolshuang Mean, Total kids tested and Mediumd\n",
+        "#dfschoolshuang=dfschoolshuang.groupby(['Year'])['Mean Score'].mean().plot(kind='bar') #Mean score (Median)Bar Graph shows it's equal for 2016 & 2017\n",
+        "#dfschoolshuang=dfschoolshuang.groupby(['Year'])['Total Tested'].sum().plot(kind='bar')#Total tested sum shows it was even in 2016 & 2017\n",
+        "#dfschoolshuang=dfschoolshuang.groupby(['Year'])['Mean Score'].median().plot(kind='bar')#Highest medium is 2017\n",
+        "#dfschoolshuang=dfschoolshuang.groupby(['Year'])['Mean Score'].mean().plot(kind='bar') #Highest medium mean was also is 2017\n",
+        "\n",
+        "\n",
+        "\n",
+        "#New school filter Ps 188 for only 2015\n",
+        "#dfschool_Ps188 = df[(df['School DBN'] =='01M188') & (df['Year'] == 2015)& (df['Regents Exam'] == 'Common Core Algebra')]\n",
+        "#dfschool_Ps188\n",
+        "\n",
+        "#dfschool_Ps188.groupby(['Year'])['Total Tested'].sum()\n",
+        "#dfschool_Ps188.groupby(['Year'])['Total Tested'].describe()\n",
+        "#dfschool_Ps188.groupby(['Year'])['Mean Score'].median()\n",
+        "#dfschool_Ps188.groupby(['Year'])['Mean Score'].mean()\n",
+        "\n",
+        "#Graphing Results for dfschoolshuang Mean, Total kids tested and Mediumdf\n",
+        "#dfschool_Ps188=dfschool_Ps188.groupby(['Year'])['Mean Score'].mean().plot(kind='bar')\n",
+        "#dfschool_Ps188=dfschool_Ps188.groupby(['Year'])['Total Tested'].sum().plot(kind='bar')\n",
+        "#dfschool_Ps188=dfschool_Ps188.groupby(['Year'])['Mean Score'].median().plot(kind='bar')\n",
+        "#dfschool_Ps188=dfschool_Ps188.groupby(['Year'])['Mean Score'].mean().plot(kind='bar')"
+      ],
+      "execution_count": 9,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "Year\n",
+              "2015    78.4\n",
+              "2016    79.0\n",
+              "2017    84.9\n",
+              "Name: Mean Score, dtype: float64"
+            ]
+          },
+          "metadata": {
+            "tags": []
+          },
+          "execution_count": 9
+        }
+      ]
+    }
+  ]
+}
